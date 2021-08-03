@@ -13,7 +13,8 @@ const styles = StyleSheet.create({
       marginVertical: 10,
       backgroundColor: '#ccc',
       borderColor: 'black',
-      borderWidth: 1
+      borderWidth: 1,
+      borderRadius: 10
     }
   });
 
