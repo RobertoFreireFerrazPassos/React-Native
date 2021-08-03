@@ -5,15 +5,23 @@ import { TaskService } from '../../services/tasks/taskService';
 
 const NewTask = () => {
     const placeholder="Add a new Task";
-    const [taskItem,setTaskItem] = useState('');
+    const [taskItemTitle,setTaskItemTitle] = useState('');
+    const [disable,setDisable] = useState(true);
 
     const taskInputHandler = enteredTaskText => {
-        setTaskItem(enteredTaskText);
+        if (!enteredTaskText || enteredTaskText.length == 0) {
+            setDisable(true);
+        }  else {
+            setDisable(false);
+        }
+        setTaskItemTitle(enteredTaskText);
     }
 
-    const addTask = () => {
-        TaskService.addTask(taskItem);
-    };
+    const addTask = () => {  
+        TaskService.addTask(taskItemTitle);
+        setTaskItemTitle('');
+        setDisable(true);
+    }
 
     return (
         <View style={styles.inputContainer}>
@@ -21,11 +29,12 @@ const NewTask = () => {
                 placeholder={placeholder}
                 style={styles.input}
                 onChangeText={taskInputHandler}
-                value={taskItem}
+                value={taskItemTitle}
             ></TextInput>
             <TouchableHighlight>
                 <View>
                     <Button 
+                        disabled={disable}
                         title="Add" 
                         color="green"
                         onPress={addTask}
