@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, FlatList } from 'react-native';
+import { View, FlatList, StyleSheet } from 'react-native';
 
 import TaskItem from './taskItem';
 import { TaskService } from '../../services/tasks/taskService';
@@ -10,22 +10,27 @@ const TaskList = () => {
     useEffect(() => {
         TaskService.onChanges().subscribe(()=>{
             setTaskList(TaskService.getTasks());
-        })
+        });
     },[]);
 
     return (
-        <View>
+        <View style={styles.list}>
             <FlatList
-                keyExtractor={item => item}
+                keyExtractor={item => item.id}
                 data={taskList}
                 renderItem={ itemData => (
                     <TaskItem item={itemData.item}></TaskItem>
                 )}
             >
-            </FlatList>
-            
+            </FlatList>            
         </View>
     )
 }
 
 export default TaskList;
+
+const styles = StyleSheet.create({
+    list: {
+      margin: 20
+    }
+  });

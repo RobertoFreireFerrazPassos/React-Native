@@ -9,10 +9,8 @@ const TaskContainer = () => {
         <View style={styles.container}>
             <NewTask>
             </NewTask>
-            <View>
-                <TaskList>                
-                </TaskList>
-            </View>
+            <TaskList>                
+            </TaskList>
         </View>
     )    
 }
