@@ -1,23 +1,9 @@
-import { StatusBar } from 'expo-status-bar';
-import React, { useState }  from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import React  from 'react';
+
+import TaskContainer from './components/task/taskContainer';
 
 export default function App() {
-  const [titleValue, setTitle] = useState("title");
   return (
-    <View style={styles.container}>
-      <Text>{titleValue}</Text>
-      <Button title="Change Text" onPress={() => setTitle('button clicked') } />
-      <StatusBar style="auto" />
-    </View>
+      <TaskContainer></TaskContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
